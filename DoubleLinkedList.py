@@ -1,7 +1,6 @@
+#/usr/bin/env python3
 # -*- coding: utf-8 -*-
-with open (r'H:\04_Python\EUCountries.txt') as file:
-    countries = file.read()
-countries = countries.split('\n')
+
 
 class Node:
     def __init__(self, data=None):
@@ -110,9 +109,3 @@ class LinkedList:
         self.header = None
         self.size = 0
 
-linkedlist = LinkedList()
-for i in countries:
-    linkedlist.push_begin(i)
-
-print(linkedlist.pop_begin())
-linkedlist.display(debug=True)
