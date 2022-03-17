@@ -40,8 +40,11 @@ class LinkedList:
         
     def push_begin(self, data):
         node = Node(data)
-        node.next = self.header
-        self.header = node
+        if self.header is None:
+            self.header = node
+        else:
+            node.next = self.header
+            self.header = node
         self.size += 1
         
     def search(self, data):
