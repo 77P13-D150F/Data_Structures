@@ -1,8 +1,6 @@
+#/usr/bin/env python3
 # -*- coding: utf-8 -*-
-with open (r'H:\04_Python\EUCountries.txt') as file:
-    countries = file.read()
-countries = countries.split('\n')
-countries.sort(key=lambda x:x[0])
+
 
 class Node:
     def __init__(self, data=None):
@@ -135,8 +133,3 @@ class LinkedList:
             current = current.next
         return False
 
-linkedlist = LinkedList()
-for i in countries:
-    linkedlist.push_begin(i)
-
-linkedlist.display(True)
