@@ -37,6 +37,6 @@ class Stack:
         else:
             return None
         
-    def clear(self):
+    def flush(self):
         self.top = None
         self.size = 0
