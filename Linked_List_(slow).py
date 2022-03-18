@@ -80,7 +80,7 @@ class LinkedList:
         current = self.header
         previous_node = None
         next_node = None
-        while current.next is not None:
+        while current is not None:
             next_node = current.next
             current.next = previous_node
             previous_node = current
