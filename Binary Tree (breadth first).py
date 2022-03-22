@@ -32,8 +32,10 @@ class BinaryTree:
                 if current.right is None:
                     current.right = node
                     break
-                queue.append(current.left)
-                queue.append(current.right)
+                if current.left:
+                    queue.append(current.left)
+                if current.right:
+                    queue.append(current.right)
         self.size += 1
             
     def extract(self):
