@@ -105,3 +105,7 @@ class BinaryTree:
         while current.right is not None:
             current = current.right
         return current.data
+    
+    def flush(self):
+        self.root = None
+        self.size = 0
