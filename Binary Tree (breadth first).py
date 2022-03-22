@@ -37,16 +37,14 @@ class BinaryTree:
         self.size += 1
             
     def extract(self):
-        list_nodes = []
         queue = deque([self.root])
         while len(queue) > 0:
             node = queue.popleft()
-            list_nodes.append(node.data)
+            yield node.data
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        return list_nodes
 
     def search(self, data):
         queue = deque([self.root])
@@ -60,7 +58,7 @@ class BinaryTree:
                 queue.append(node.right)
         return False
 
-    def subtree(self, data):
+    def display_subtree(self, data):
         queue = deque([self.root])
         while len(queue) > 0:
             node = queue.popleft()
@@ -79,9 +77,35 @@ class BinaryTree:
                         queue.append(node.left)
                     if node.right:
                         queue.append(node.right)
-                return list_nodes
+                print(list_nodes)
 
-    def leaves(self):
+    def pop_subtree(self, data):
+        queue = deque([self.root])
+        while len(queue) > 0:
+            node = queue.popleft()
+            if node.left.data == data:
+                subtree_root = node.left
+                node.left = None
+                break
+            if node.right.data == data:
+                subtree_root = node.right
+                node.right = None
+                break
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        queue = deque([subtree_root])
+        while len(queue) > 0:
+            node = queue.popleft()
+            yield node.data
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)   
+        self.size -= len(list_nodes)
+
+    def display_leaves(self):
         leaves = []
         queue = deque([self.root])
         while len(queue) > 0:
@@ -92,7 +116,26 @@ class BinaryTree:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
-        return leaves
+        print(leaves)
+    
+    def pop_leaf(self, data):
+        queue = deque([self.root])
+        while len(queue) > 0:
+            node = queue.popleft()
+            if node.left.data == data and (node.left.left is None) and (node.left.right is None):
+                leaf = node.left.data
+                node.left = None
+                self.size -= 1
+                return leaf
+            if node.right.data == data and (node.right.left is None) and (node.right.right is None):
+                leaf = node.right.data
+                node.right = None
+                self.size -= 1
+                return leaf
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
     
     def min_node(self):
         current = self.root
@@ -105,7 +148,7 @@ class BinaryTree:
         while current.right is not None:
             current = current.right
         return current.data
-    
+
     def flush(self):
         self.root = None
         self.size = 0
