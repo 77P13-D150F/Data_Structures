@@ -37,6 +37,27 @@ class BinaryTree:
                 if current.right:
                     queue.append(current.right)
         self.size += 1
+
+    # valid only for data that can be compared numerically
+    def search_tree_append(self, data):
+        node = Node(data)
+        if self.root is None:
+            self.root = node
+        else:
+            queue = deque([self.root])
+            while len(queue) > 0:
+                current = queue.popleft()
+                if (current.left is None) and (node.data < current.data):
+                    current.left = node
+                    break
+                if (current.right is None) and (node.data > current.data):
+                    current.right = node
+                    break
+                if current.left:
+                    queue.append(current.left)
+                if current.right:
+                    queue.append(current.right)
+        self.size += 1
             
     def display(self):
         print(f'In-order (Depth first): {self.inorder(self.root)}')
