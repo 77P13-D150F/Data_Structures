@@ -42,7 +42,7 @@ class BinaryTree:
         print(f'In-order (Depth first): {self.inorder(self.root)}')
         print(f'Pre-order (Depth first): {self.preorder(self.root)}')
         print(f'Post-order (Depth first): {self.postorder(self.root)}')
-        print(f'Breadth first: {self.extract()}')
+        print(f'Breadth first: {self.breadth_first()}')
     
     # child left -> parent -> child right
     def inorder(self, node, results=[]):
@@ -53,16 +53,26 @@ class BinaryTree:
         self.inorder(node.right, results)
         return results
     
-    #
+    # parent -> child left -> child right 
     def preorder(self, node, results=[]):
-        pass
+        if node is None:
+            return
+        results.append(node.data)
+        self.preorder(node.left, results)
+        self.preorder(node.right, results)
+        return results
     
-    #
+    # child left -> child right -> parent
     def postorder(self, node, results=[]):
-        pass
+        if node is None:
+            return
+        self.postorder(node.left, results)
+        self.postorder(node.right, results)
+        results.append(node.data)
+        return results
     
     # breadth first
-    def extract(self):
+    def breadth_first(self):
         nodes = []
         queue = deque([self.root])
         while len(queue) > 0:
