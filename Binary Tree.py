@@ -39,7 +39,7 @@ class BinaryTree:
         self.size += 1
 
     # valid only for data that can be compared numerically
-    def search_tree_append(self, data):
+    def BST_append(self, data):
         node = Node(data)
         if self.root is None:
             self.root = node
@@ -53,9 +53,9 @@ class BinaryTree:
                 if (current.right is None) and (node.data > current.data):
                     current.right = node
                     break
-                if current.left:
+                if current.left and node.data < current.data:
                     queue.append(current.left)
-                if current.right:
+                if current.right and node.data > current.data:
                     queue.append(current.right)
         self.size += 1
             
