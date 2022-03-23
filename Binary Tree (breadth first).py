@@ -151,6 +151,25 @@ class BinaryTree:
             current = current.right
         return current.data
 
+    def level(self, data):
+        if self.search(data):
+            queue = deque([self.root])
+            depth = 0
+            c = 0
+            while len(queue) > 0:
+                layer = 2 ** depth
+                node = queue.popleft()
+                if data == node.data:
+                    return depth
+                c += 1
+                queue.append(node.left)
+                queue.append(node.right)
+                if c == layer:
+                    depth += 1
+                    c = 0
+        else:
+            return None
+        
     def flush(self):
         self.root = None
         self.size = 0
