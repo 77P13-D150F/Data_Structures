@@ -101,11 +101,12 @@ class BinaryTree:
         while len(queue) > 0:
             node = queue.popleft()
             yield node.data
+            self.size -= 1
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)   
-        self.size -= len(list_nodes)
+
 
     def display_leaves(self):
         leaves = []
@@ -151,7 +152,7 @@ class BinaryTree:
             current = current.right
         return current.data
 
-    def level(self, data):
+    def level_node(self, data):
         if self.search(data):
             queue = deque([self.root])
             depth = 0
