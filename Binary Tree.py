@@ -38,15 +38,41 @@ class BinaryTree:
                     queue.append(current.right)
         self.size += 1
             
+    def display(self):
+        print(f'In-order (Depth first): {self.inorder(self.root)}')
+        print(f'Pre-order (Depth first): {self.preorder(self.root)}')
+        print(f'Post-order (Depth first): {self.postorder(self.root)}')
+        print(f'Breadth first: {self.extract()}')
+    
+    # child left -> parent -> child right
+    def inorder(self, node, results=[]):
+        if node is None:
+            return
+        self.inorder(node.left, results)
+        results.append(node.data)
+        self.inorder(node.right, results)
+        return results
+    
+    #
+    def preorder(self, node, results=[]):
+        pass
+    
+    #
+    def postorder(self, node, results=[]):
+        pass
+    
+    # breadth first
     def extract(self):
+        nodes = []
         queue = deque([self.root])
         while len(queue) > 0:
             node = queue.popleft()
-            yield node.data
+            nodes.append(node.data)
             if node.left:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
+        return nodes
 
     def search(self, data):
         queue = deque([self.root])
