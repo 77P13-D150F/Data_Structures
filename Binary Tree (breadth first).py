@@ -145,16 +145,16 @@ class BinaryTree:
             return None
         
     def min_node(self):
-        current = self.root
-        while current.left is not None:
-            current = current.left
-        return current.data
+        node = self.root
+        while node.left is not None:
+            node = node.left
+        return node.data
 
     def max_node(self):
-        current = self.root
-        while current.right is not None:
-            current = current.right
-        return current.data
+        node = self.root
+        while node.right is not None:
+            node = node.right
+        return node.data
 
     def level_node(self, data):
         if self.search(data):
