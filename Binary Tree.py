@@ -17,8 +17,9 @@ class BinaryTree:
     def __init__(self):
         self.root = None
         self.size = 0
-
-    def append(self, data):
+    
+    # Breadth First append. Values are filled layer by layer, horizontally
+    def BF_append(self, data):
         node = Node(data)
         if self.root is None:
             self.root = node
@@ -38,7 +39,7 @@ class BinaryTree:
                     queue.append(current.right)
         self.size += 1
 
-    # valid only for data that can be compared numerically
+    # Binary Search Tree append. Valid only for data that can be compared numerically
     def BST_append(self, data):
         node = Node(data)
         if self.root is None:
@@ -93,7 +94,7 @@ class BinaryTree:
         results.append(node.data)
         return results
     
-    # breadth first
+    # Breadth First tree traversal
     def breadth_first(self):
         nodes = []
         queue = deque([self.root])
@@ -106,6 +107,7 @@ class BinaryTree:
                 queue.append(node.right)
         return nodes
 
+    # Breadth First tree search
     def search(self, data):
         queue = deque([self.root])
         while len(queue) > 0:
@@ -118,6 +120,7 @@ class BinaryTree:
                 queue.append(node.right)
         return False
 
+    # Full sub-tree display, using Breadth First search and traversal
     def display_subtree(self, data):
         queue = deque([self.root])
         while len(queue) > 0:
@@ -139,6 +142,7 @@ class BinaryTree:
                         queue.append(node.right)
                 print(nodes)
 
+    # Full sub-tree delete, using Breadth First search and traversal            
     def pop_subtree(self, data):
         queue = deque([self.root])
         while len(queue) > 0:
@@ -167,6 +171,7 @@ class BinaryTree:
                 queue.append(node.right)   
         return nodes
 
+    # it relies on Breadth First traversal
     def display_leaves(self):
         leaves = []
         queue = deque([self.root])
@@ -180,6 +185,7 @@ class BinaryTree:
                 queue.append(node.right)
         print(leaves)
     
+    # it relies on Breadth First traversal
     def pop_leaf(self, data):
         if self.search(data):
             queue = deque([self.root])
@@ -201,19 +207,22 @@ class BinaryTree:
                     queue.append(node.right)
         else:
             return None
-        
+    
+    # the furthest bottom-left node
     def min_node(self):
         node = self.root
         while node.left is not None:
             node = node.left
         return node.data
 
+    # the furthest bottom-right node
     def max_node(self):
         node = self.root
         while node.right is not None:
             node = node.right
         return node.data
 
+    # display the level value of a node
     def level_node(self, data):
         if self.search(data):
             queue = deque([self.root])
@@ -233,6 +242,7 @@ class BinaryTree:
         else:
             return None
 
+    # display the heigth of the tree
     def height(self):
         queue = deque([self.root])
         depth = 0
@@ -252,6 +262,7 @@ class BinaryTree:
                 c = 0
         return max(heights)
 
+    # display the width of the tree
     def width(self):
         queue = deque([self.root])
         depth = 0
@@ -271,6 +282,7 @@ class BinaryTree:
                 c = 0
         return max(width)
     
+    # delete all the nodes of the whole tree
     def flush(self):
         self.root = None
         self.size = 0
