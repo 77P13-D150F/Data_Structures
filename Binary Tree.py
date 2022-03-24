@@ -195,7 +195,20 @@ class BinaryTree:
                 if node.right:
                     queue.append(node.right)
             return False
-
+        
+    # Binary Search Tree search (valid only where append operations are also BST) 
+    def BST_search(self, data):
+        if self.root is not None:
+            current = self.root
+            while current is not None:
+                if current.data == data:
+                    return True
+                if data < current.data:
+                    current = current.left
+                else:
+                    current = current.right
+            return False
+        
     # Full sub-tree display, using Breadth First search and traversal
     def display_subtree(self, data):
         if self.root is not None:
