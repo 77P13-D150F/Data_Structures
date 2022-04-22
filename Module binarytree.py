@@ -1,13 +1,11 @@
 from binarytree import Node
 from binarytree import tree
 
-
         
 def isOperator(c):
     if c in '+-*/':
         return True
     return False
-
 
 def postorder_build(expr):
     stack = []
@@ -21,7 +19,6 @@ def postorder_build(expr):
             node.left = stack.pop()
             stack.append(node)
     return stack.pop()
-
 
 def solve(node):
     if node.value == '+':
